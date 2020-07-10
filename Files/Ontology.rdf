@@ -13,6 +13,11 @@ ns2:Age a ns1:DatatypeProperty,
     rdfs:domain ns2:Person ;
     rdfs:range xsd:integer .
 
+ns2:Chronic_diseases a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Patient ;
+    rdfs:range xsd:string .
+
 ns2:Consulted a ns1:FunctionalProperty,
         ns1:ObjectProperty ;
     rdfs:domain ns2:Doctor ;
@@ -52,6 +57,34 @@ ns2:Note a ns1:DatatypeProperty,
     rdfs:domain ns2:Consultation ;
     rdfs:range xsd:string .
 
+ns2:P_Amin48saadi a ns1:NamedIndividual,
+        ns2:Patient ;
+    ns2:Age 48 ;
+    ns2:Chronic_diseases "test"^^xsd:string ;
+    ns2:District "Bir mou"^^xsd:string ;
+    ns2:FirstName "Amin"^^xsd:string ;
+    ns2:Gender "Male"^^xsd:string ;
+    ns2:Has ns2:symptom1,
+        ns2:symptom3 ;
+    ns2:LastName "saadi"^^xsd:string ;
+    ns2:Province "Algiers"^^xsd:string ;
+    ns2:Started "2020-07-08"^^xsd:date ;
+    ns2:Treatments "test"^^xsd:string .
+
+ns2:P_Amin48saadi0 a ns1:NamedIndividual,
+        ns2:Patient ;
+    ns2:Age 48 ;
+    ns2:Chronic_diseases "test"^^xsd:string ;
+    ns2:District "Bir mou"^^xsd:string ;
+    ns2:FirstName "Amin"^^xsd:string ;
+    ns2:Gender "Male"^^xsd:string ;
+    ns2:Has ns2:symptom1,
+        ns2:symptom3 ;
+    ns2:LastName "saadi"^^xsd:string ;
+    ns2:Province "Algiers"^^xsd:string ;
+    ns2:Started "2020-07-08"^^xsd:date ;
+    ns2:Treatments "test"^^xsd:string .
+
 ns2:P_youcef22madadi0 a ns1:NamedIndividual,
         ns2:Patient ;
     ns2:Age 22 ;
@@ -82,6 +115,11 @@ ns2:Suggestions a ns1:DatatypeProperty,
 ns2:Symptom_Name a ns1:DatatypeProperty,
         ns1:FunctionalProperty ;
     rdfs:domain ns2:Symptom ;
+    rdfs:range xsd:string .
+
+ns2:Treatments a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Person ;
     rdfs:range xsd:string .
 
 ns2:is_Sick_with a ns1:ObjectProperty ;
@@ -165,20 +203,10 @@ ns2:disease1 a ns1:NamedIndividual,
     ns2:Disease_Code "COVID-19"^^xsd:string ;
     ns2:Disease_Name "Coronavirus"^^xsd:string .
 
-ns2:symptom1 a ns1:NamedIndividual,
-        ns2:Symptom ;
-    ns2:CausedBy ns2:disease1 ;
-    ns2:Symptom_Name "A high temperature"^^xsd:string .
-
 ns2:symptom2 a ns1:NamedIndividual,
         ns2:Symptom ;
     ns2:CausedBy ns2:disease1 ;
     ns2:Symptom_Name "A new continuous cough"^^xsd:string .
-
-ns2:symptom3 a ns1:NamedIndividual,
-        ns2:Symptom ;
-    ns2:CausedBy ns2:disease1 ;
-    ns2:Symptom_Name "A loss or change to your sense of smell or taste"^^xsd:string .
 
 ns2:Doctor a ns1:Class ;
     rdfs:subClassOf ns2:Person .
@@ -201,10 +229,23 @@ ns2:consultation1 a ns1:NamedIndividual,
     ns2:Wrote_by ns2:D_Lol,
         ns2:D_Lol .
 
+ns2:symptom1 a ns1:NamedIndividual,
+        ns2:Symptom ;
+    ns2:CausedBy ns2:disease1 ;
+    ns2:Symptom_Name "A high temperature"^^xsd:string .
+
+ns2:symptom3 a ns1:NamedIndividual,
+        ns2:Symptom ;
+    ns2:CausedBy ns2:disease1 ;
+    ns2:Symptom_Name "A loss or change to your sense of smell or taste"^^xsd:string .
+
 ns2:Disease a ns1:Class ;
     rdfs:subClassOf ns1:Thing .
 
 ns2:Consultation a ns1:Class ;
+    rdfs:subClassOf ns1:Thing .
+
+ns2:Symptom a ns1:Class ;
     rdfs:subClassOf ns1:Thing .
 
 ns2:Patient a ns1:Class ;
@@ -213,9 +254,6 @@ ns2:Patient a ns1:Class ;
             ns1:intersectionOf ( ns2:Person [ a ns1:Restriction ;
                         ns1:onProperty ns2:Has ;
                         ns1:someValuesFrom ns2:Symptom ] ) ] .
-
-ns2:Symptom a ns1:Class ;
-    rdfs:subClassOf ns1:Thing .
 
 ns2:Person a ns1:Class ;
     rdfs:subClassOf ns1:Thing .

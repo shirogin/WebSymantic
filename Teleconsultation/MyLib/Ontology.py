@@ -1,8 +1,8 @@
 OntologyFile = "Files/Ontology.owl"
 RdfFile = "Files/Ontology.rdf"
-DiseasesFile ="Files/Diseases.json"
-from owlready2 import *
+from owlready2 import default_world,get_ontology,Thing,DataProperty,FunctionalProperty,ObjectProperty
 from Teleconsultation.MyLib.Queries import *
+import datetime
 def SaveOnto():
     open(RdfFile,"w+")
     graphe = default_world.as_rdflib_graph()
@@ -91,6 +91,8 @@ with ont :
             patient.District = Data["District"]
             patient.Province = Data["Province"]
             patient.Has=Data["Symptoms"]
+            patient.Chronic_diseases=Data["Chronic"]
+            patient.Treatments=Data["Treatments"]
             Started=Data["Started"].split("-")
             Started=[int(v) for v in Started]
             Started=datetime.date(*Started)
@@ -120,6 +122,8 @@ with ont :
                 "Province" :patient.Province,
                 "Started" : str(patient.Started),
                 "Symptoms": Symp,
+                "Chronic" : patient.Chronic_diseases,
+                "Treatments" : patient.Treatments,
                 "Consultation":consultation
             }
         @staticmethod
@@ -128,7 +132,7 @@ with ont :
             result= {}
             query = [[str(j) for j in i] for i in graphe.query(Queries.Unchecked)]
             for q in query:
-                a=dict(zip(["PatientID","FirstName","LastName","Gender","Age","District","Province","Started","Symptoms"],q))
+                a=dict(zip(["PatientID","FirstName","LastName","Gender","Age","District","Province","Chronic","Treatments","Started","Symptoms"],q))
                 a["PatientID"]=a["PatientID"].replace("https://YoucefMadadi.com/Teleconsultation#","")
                 try:
                     result[a["PatientID"]]["Symptoms"].append(a["Symptoms"])
@@ -219,6 +223,12 @@ with ont :
         domain=[Person]
         range=[str]
     class LastName(DataProperty, FunctionalProperty):
+        domain=[Person]
+        range=[str]
+    class Chronic_diseases(DataProperty, FunctionalProperty):
+        domain=[Patient]
+        range=[str]
+    class Treatments(DataProperty, FunctionalProperty):
         domain=[Person]
         range=[str]
     class Location(DataProperty, FunctionalProperty):

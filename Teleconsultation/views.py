@@ -34,7 +34,9 @@ def Consultaion(request):
             "District" : Data["Daira"][0],
             "Province" : Data["Wilaya"][0],
             "Symptoms" : Data["Symptoms"],
-            "Started" : Data["SymptomsTime"][0]
+            "Started" : Data["SymptomsTime"][0],
+            "Chronic" : Data["Chronic"][0],
+            "Treatments": Data["Treatments"][0]
         }
         Data['Symptoms']=[Ontology.ont[i] for i in Data['Symptoms']]
         patient=Ontology.Patient.Create(Data)

@@ -9,7 +9,7 @@ class Queries():
     """
     Unchecked="""
         prefix : <https://YoucefMadadi.com/Teleconsultation#>
-        SELECT ?s ?fname ?lname ?gender ?age ?district ?province ?started ?symptoms
+        SELECT ?s ?fname ?lname ?gender ?age ?district ?province ?chronic ?treatments ?started ?symptoms
         WHERE {
             ?s rdf:type :Patient ;
                 :FirstName ?fname;
@@ -18,6 +18,8 @@ class Queries():
                 :Province ?province;
                 :Age ?age;
                 :Gender ?gender;
+                :Chronic_diseases ?chronic;
+                :Treatments ?treatments;
                 :Started ?started;
                 :Has ?symptom.
                 OPTIONAL { ?s :Affected ?consultation. }
