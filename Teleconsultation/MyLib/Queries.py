@@ -18,11 +18,13 @@ class Queries():
                 :Province ?province;
                 :Age ?age;
                 :Gender ?gender;
-                :Chronic_diseases ?chronic;
-                :Treatments ?treatments;
                 :Started ?started;
                 :Has ?symptom.
-                OPTIONAL { ?s :Affected ?consultation. }
+                OPTIONAL { 
+                    ?s :Affected ?consultation;
+                        :Chronic_diseases ?chronic;
+                        :Treatments ?treatments.
+                    }
                 FILTER(!bound(?consultation))
                 
             ?symptom :Symptom_Name ?symptoms.

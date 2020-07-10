@@ -10,7 +10,7 @@ def SaveOnto():
     default_world.save()
     ont.save(file = OntologyFile, format = "rdfxml")
     return graphe
-default_world.set_backend(filename = "db2.sqlite3", exclusive = False)
+default_world.set_backend(filename = "db0.sqlite3", exclusive = False)
 ont=get_ontology("https://YoucefMadadi.com/Teleconsultation")
 with ont :
     class Symptom(Thing):
