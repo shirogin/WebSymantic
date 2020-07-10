@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Notable"; 
+    src: url("fonts/Notable.ttf");
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0!important;
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(45deg, rgb(85,93,165), rgb(36,44,118));
+}
+.navbar-brand{color: black!important; font-weight: 700;}
+.navbar-brand img{
+    height: 2em;
+    margin-right: .4em;
+}
+.nav-link{
+    font-weight: 600;
+    border-bottom: .1em solid transparent;
+}
+.nav-link:hover{border-bottom-color: white;}
+.background{
+     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 80vh;
+    background-color: rgb(225, 230, 245,.25);
+}
+.InnerContent{
+    background-color: white;
+    height: 100vh;
+    overflow:auto;
+}
+
+.content h1,.content h5{
+    font-family: Notable;
+}
+.content p,.content a{font-weight: 600;}
+.content a{font-size: 1.1em;}
+.form-group{margin:.5em 0;}
+.form-group label,.form-group input,.form-group select,textarea{
+    font-weight: 700;
+}
+option{
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: normal !important;
+    white-space: normal;
+}
+option:before {
+    content: "*";
+}
+input[type="file"]{
+    height: fit-content!important;
+}

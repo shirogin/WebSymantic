@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block Content %}
+<div  class="px-5 pt-5 col-5 InnerContent">
+    <h1 class="mt-5 pt-5">Hello Doctor:<br>{{Doctor.FullName}}</h1>
+    <p>We would like you to Check Some of these patients if you have time.</p>
+    <div class="d-flex flex-column">
+        {% if Patiens %}
+        {% for patien in Patiens %}
+            <div class="card my-3">
+                <form class="card-body" method="POST" action="/Doctor/">{% csrf_token %}
+                    <input type="text" name="DoctorID" class="d-none" value="{{Doctor.ID}}">
+                    <div class="form-group row w-100">
+                        <label for="PatientID" class="col-sm-4 col-form-label">Patient ID:</label>
+                        <div class="col-sm-8">
+                            <input readonly type="text" name="PatientID" id ="PatientID" class="form-control-plaintext" value="{{ patien.PatientID }}">
+                        </div>
+                    </div>
+                    <div class="form-group row w-100">
+                        <label for="Gender" class="col-sm-4 col-form-label">Gender:</label>
+                        <div class="col-sm-8">
+                            <input readonly type="text" id ="Gender" class="form-control-plaintext" value="{{patien.Gender}}">
+                        </div>
+                    </div>  
+                    <div class="form-group row w-100">
+                        <label for="Age" class="col-sm-4 col-form-label">Age:</label>
+                        <div class="col-sm-8">
+                            <input readonly type="number" id ="Age" class="form-control-plaintext" value="{{patien.Age}}">
+                        </div>
+                    </div>  
+                    <div class="form-group row w-100">
+                        <label for="Symptoms" class="col-sm-4 col-form-label">Symptoms:</label>
+                        <div class="col-sm-8">
+                            <select disabled type="text" id="Symptoms" class="form-control-plaintext" required multiple>
+                                {% for symp in patien.Symptoms%}
+                                    <option>{{ symp }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="form-group row w-100">
+                        <label for="Started" class="col-sm-4 col-form-label">Started:</label>
+                        <div class="col-sm-8">
+                            <input readonly type="date" id ="Started" class="form-control-plaintext" value="{{patien.Started}}">
+                        </div>
+                    </div>  
+                    <div class="form-group row w-100">
+                        <label for="Note" class="col-sm-4 col-form-label">Note:</label>
+                        <div class="col-sm-8">
+                            <textarea name="Note" id ="Started" class="form-control" required></textarea>
+                        </div>
+                    </div>  
+                    <div class="form-group row w-100">
+                        <label for="Suggestions" class="col-sm-4 col-form-label">Suggestions:</label>
+                        <div class="col-sm-8">
+                            <textarea name="Suggestions" id ="Started" class="form-control" required></textarea>
+                        </div>
+                    </div>  
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-secondary ml-auto mr-2">Consult</button>
+                        <a href="/Doctor" class="btn btn-outline-dark mr-2">Return</a>
+                    </div>
+                </form>
+            </div>
+            {% endfor%}
+        {% else %}
+            <h3 class="m-5">There is no Patient for the moment.</h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock Content %}

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if Title %}
+        <title>Teleconsultation - {{ Title }}</title>
+    {% else %}
+        <title>Teleconsultation</title>
+    {% endif %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body >
+    <nav class="navbar navbar-expand-md navbar-dark bg-transparant px-4 py-2 fixed-top">
+        <a class="navbar-brand ml-5" href="/"><img src="{% static 'img/telemedicine.svg' %}">Teleconsultation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto mr-5">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Doctor">Doctor ?</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Consultaion">Consultaion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Results">Results</a>
+            </li>
+            <li class="nav-item dropdown mr-5">
+                <a class="nav-link dropdown-toggle" href="#" id="Learn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Learn
+                </a>
+                <div class="dropdown-menu" aria-labelledby="Learn">
+                  <a class="dropdown-item" href="/Learn/Covid-19">Covid-19</a>
+                </div>
+              </li>
+        </ul>
+        </div>
+    </nav> 
+    <div id="content" class="d-flex content">
+        {% block Content %}
+        {% endblock Content %}
+        <div class="col-7 background d-flex flex-column">
+            <img class="mt-auto" src="{% static 'img/doctors.svg' %}" alt="" srcset="">
+        </div>
+    </div>
+    
+    <div class="Scripts">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+    </div>
+</body>
+</html>

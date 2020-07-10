@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block Content %}
+    <div  class="px-5 pt-5 col-5 InnerContent">
+        <h1 class="mt-5 ">Sign-In for Results</h1>
+        <p>We would like you to fill some personal information so you can get your result.</p>
+        {% if Message %}<p class="text-danger">{{ Message }}</p>{% endif%}
+        <form id="IDForm" action="/Results" method="GET" class="form-group row">
+            <div class="form-group row w-100">
+                <label for="PatientID" class="col-sm-4 col-form-label">Patient ID:</label>
+                <div class="col-sm-8">
+                    <input type="text" id ="PatientID" name="PatientID" class="form-control" required placeholder="P2016584" {% if PatientID %}value="{{PatientID}}"{% else %} value="" {% endif%}>
+                </div>
+            </div>    
+        </form>
+        <button form="IDForm" class="btn btn-secondary ml-auto mr-1 px-4 my-2" type="submit" > Sign-In with ID</button>
+        <a href="/" class="btn btn-outline-dark px-3 mr-3 my-2">Return</a>
+        
+    </div>
+{% endblock Content %}

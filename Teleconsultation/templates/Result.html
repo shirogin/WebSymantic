@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block Content %}
+    <div  class="px-5 pt-5 col-5 InnerContent">
+        <h1 class="mt-5">Profile</h1>
+        <p>You have a PatientID that you must save so you can check for your result later.</p>
+        <form class="form-group row">
+            <div class="form-group row w-100">
+                <label for="PatientID" class="col-sm-4 col-form-label">Patient ID:</label>
+                <div class="col-sm-8">
+                    <input readonly type="text" id ="PatientID" name="PatientID" class="text-success form-control-plaintext" value="{{ PatientID }}">
+                </div>
+            </div>  
+            <div class="form-group row w-100">
+                <label for="FirstName" class="col-sm-4 col-form-label">First Name:</label>
+                <div class="col-sm-8">
+                    <input readonly type="text" id ="FirstName" name="FirstName" class="form-control-plaintext" value="{{ Data.FirstName }}">
+                </div>
+            </div>    
+            <div class="form-group row w-100">
+                <label for="LastName" class="col-sm-4 col-form-label">Last Name:</label>
+                <div class="col-sm-8">
+                    <input readonly type="text" name="LastName" id="LastName" class="form-control-plaintext" value="{{ Data.LastName}}">
+                </div>
+            </div>  
+            <div class="form-group row w-100">
+                <label for="Age" class="col-sm-4 col-form-label">Age:</label>
+                <div class="col-sm-8">
+                    <input readonly type="number" name="Age" id="Age" class="form-control-plaintext" value="{{ Data.Age}}">
+                </div>
+            </div>  
+            <div class="form-group row w-100">
+                <label for="Gender" class="col-sm-4 col-form-label">Gender:</label>
+                <div class="col-sm-8">
+                    <input readonly type="text" name="Gender" id="Gender" class="form-control-plaintext" value="{{ Data.Gender}}">
+                </div>
+            </div>  
+            <div class="form-group row w-100">
+                <label for="Wilaya" class="col-sm-4 col-form-label">Wilaya:</label>
+                <div class="col-sm-8">
+                    <input readonly type="text" name="Wilaya" id="Wilaya" class="form-control-plaintext" value="{{ Data.Province}}">
+                </div>
+            </div>  
+            <div class="form-group row w-100">
+                <label for="Daira" class="col-sm-4 col-form-label">Daira:</label>
+                <div class="col-sm-8">
+                    <input readonly type="text" name="Daira" id="Daira" class="form-control-plaintext"  value="{{ Data.District}}">
+                </div>
+            </div> 
+            <div class="form-group row w-100">
+                <label for="Symptoms" class="col-sm-4 col-form-label">Symptoms:</label>
+                <div class="col-sm-8">
+                    <select disabled type="text" name="Symptoms" id="Symptoms" class="form-control-plaintext" required multiple>
+                        {% for symp in Data.Symptoms%}
+                            <option>{{ symp }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div> 
+            <div class="form-group row w-100">
+                <label for="SymptomsTime" class="col-sm-4 col-form-label">Started:</label>
+                <div class="col-sm-8">
+                    <input readonly type="date" name="SymptomsTime" id="SymptomsTime" class="form-control-plaintext" value="{{ Data.Started }}">
+                </div>
+            </div>  
+        </form>
+        <h1>Results</h1>
+        {% if Data.Consultation %}
+        <p class="h5">You have been checked by : <br>Dr. {{ Data.Consultation.Doctor }}</p>
+        <form class="form-group row">
+            <div class="form-group row w-100">
+                <label for="Note" class="col-sm-4 col-form-label">Note:</label>
+                <div class="col-sm-8">
+                    <textarea readonly type="text" id ="Note" name="Note" class="form-control-plaintext p-2">{{ Data.Consultation.Note }}</textarea>
+                </div>
+            </div>
+            <div class="form-group row w-100">
+                <label for="Suggestions" class="col-sm-4 col-form-label">Suggestions:</label>
+                <div class="col-sm-8">
+                    <textarea readonly type="text" id ="Suggestions" name="Suggestions" class="form-control-plaintext p-2">{{Data.Consultation.Suggestions}}</textarea>
+                </div>
+            </div>
+        </form>
+        {% else %}
+        <p>Your submition will be checked in less than 24h.<br>come back later.</p>
+        {% endif %}
+    </div>
+{% endblock Content %}

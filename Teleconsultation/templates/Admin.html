@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block Content %}
+<div  class="px-5 pt-5 col-5 InnerContent">
+    <h1 class="mt-5 pt-5">Welcome to the Admin panel</h1>
+    <p>You can Add Diseases and Doctors from here Using Csv files or Json.</p>
+    <h5>Add Diseases</h5>
+    <form enctype="multipart/form-data" id="DiseaseJSONF" action="/Admin/" method="POST" class="row">{% csrf_token %}
+        <div class="form-group row">
+            <label for="DiseasesJSON" class="col-sm-4 col-form-label">Diseases JSON:</label>
+            <div class="col-sm-8">
+                <input type="file" id ="DiseasesJSON" name="DiseasesJSON" class="form-control" accept=".json"required >
+            </div>
+        </div>    
+    </form>
+    <form enctype="multipart/form-data" id="DiseaseCSVF" action="/Admin/" method="POST" class="row">{% csrf_token %}
+        <div class="form-group row">
+            <label for="DiseasesCSV" class="col-sm-4 col-form-label">Diseases CSV:</label>
+            <div class="col-sm-8">
+                <input type="file" id ="DiseasesCSV" name="DiseasesCSV" class="form-control" accept=".csv"required>
+            </div>
+        </div>    
+    </form>
+    <button form="DiseaseJSONF" type="submit" class="btn btn-secondary px-4 my-3">Upload JSON</button>
+    <button form="DiseaseCSVF" type="submit" class="btn btn-primary px-4 my-3">Upload CSV</button>
+    <h5>Add Doctors</h5>
+    <form enctype="multipart/form-data" id="DoctorJSONF" action="/Admin/" method="POST" class="row">{% csrf_token %}
+        <div class="form-group row">
+            <label for="DoctorsJSON" class="col-sm-4 col-form-label">Doctors JSON:</label>
+            <div class="col-sm-8">
+                <input type="file" id ="DoctorsJSON" name="DoctorsJSON" class="form-control" accept=".json"required>
+            </div>
+        </div>    
+    </form>
+    <form enctype="multipart/form-data" id="DoctorCSVF" action="/Admin/" method="POST" class="row">{% csrf_token %}
+        <div class="form-group row">
+            <label for="DoctorsCSV" class="col-sm-4 col-form-label">Doctors CSV:</label>
+            <div class="col-sm-8">
+                <input type="file" id ="DoctorsCSV" name="DoctorsCSV" class="form-control" accept=".csv"required>
+            </div>
+        </div>    
+    </form>
+    <button form="DoctorJSONF" type="submit" class="btn btn-secondary px-4 my-3 ">Upload JSON</button>
+    <button form="DoctorCSVF" type="submit" class="btn btn-primary px-4 my-3">Upload CSV</button>
+    
+</div>
+{% endblock Content %}

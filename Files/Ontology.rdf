@@ -1,0 +1,222 @@
+@prefix ns1: <http://www.w3.org/2002/07/owl#> .
+@prefix ns2: <https://YoucefMadadi.com/Teleconsultation#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a ns1:Ontology .
+
+<https://YoucefMadadi.com/Teleconsultation> a ns1:Ontology .
+
+ns2:Age a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Person ;
+    rdfs:range xsd:integer .
+
+ns2:Consulted a ns1:FunctionalProperty,
+        ns1:ObjectProperty ;
+    rdfs:domain ns2:Doctor ;
+    rdfs:range ns2:Patient .
+
+ns2:Disease_Code a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Disease ;
+    rdfs:range xsd:string .
+
+ns2:Disease_Name a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Disease ;
+    rdfs:range xsd:string .
+
+ns2:District a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:subPropertyOf ns2:Location .
+
+ns2:FirstName a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Person ;
+    rdfs:range xsd:string .
+
+ns2:Gender a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Person ;
+    rdfs:range xsd:string .
+
+ns2:LastName a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Person ;
+    rdfs:range xsd:string .
+
+ns2:Note a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Consultation ;
+    rdfs:range xsd:string .
+
+ns2:P_youcef22madadi0 a ns1:NamedIndividual,
+        ns2:Patient ;
+    ns2:Age 22 ;
+    ns2:District "Bir mou"^^xsd:string ;
+    ns2:FirstName "youcef"^^xsd:string ;
+    ns2:Gender "Male"^^xsd:string ;
+    ns2:Has ns2:symptom1,
+        ns2:symptom2,
+        ns2:symptom3 ;
+    ns2:LastName "madadi"^^xsd:string ;
+    ns2:Province "Algiers"^^xsd:string ;
+    ns2:Started "2020-07-08"^^xsd:date .
+
+ns2:Province a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:subPropertyOf ns2:Location .
+
+ns2:Started a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Patient ;
+    rdfs:range xsd:date .
+
+ns2:Suggestions a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Consultation ;
+    rdfs:range xsd:string .
+
+ns2:Symptom_Name a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Symptom ;
+    rdfs:range xsd:string .
+
+ns2:is_Sick_with a ns1:ObjectProperty ;
+    rdfs:domain ns2:Patient ;
+    rdfs:range ns2:Disease .
+
+ns2:Affected a ns1:FunctionalProperty,
+        ns1:ObjectProperty ;
+    rdfs:domain ns2:Patient ;
+    rdfs:range ns2:Consultation ;
+    ns1:inverseOf ns2:Affected_by .
+
+ns2:Affected_by a ns1:FunctionalProperty,
+        ns1:ObjectProperty ;
+    rdfs:domain ns2:Consultation ;
+    rdfs:range ns2:Patient ;
+    ns1:inverseOf ns2:Affected .
+
+ns2:CausedBy a ns1:ObjectProperty ;
+    rdfs:domain ns2:Symptom ;
+    rdfs:range ns2:Disease ;
+    ns1:inverseOf ns2:Causes .
+
+ns2:Causes a ns1:ObjectProperty ;
+    rdfs:domain ns2:Disease ;
+    rdfs:range ns2:Symptom ;
+    ns1:inverseOf ns2:CausedBy .
+
+ns2:Has a ns1:ObjectProperty ;
+    rdfs:domain ns2:Person ;
+    rdfs:range ns2:Symptom .
+
+ns2:Wrote a ns1:FunctionalProperty,
+        ns1:ObjectProperty ;
+    rdfs:domain ns2:Doctor ;
+    rdfs:range ns2:Consultation ;
+    ns1:inverseOf ns2:Wrote_by .
+
+ns2:Wrote_by a ns1:FunctionalProperty,
+        ns1:ObjectProperty ;
+    rdfs:domain ns2:Consultation ;
+    rdfs:range ns2:Doctor ;
+    ns1:inverseOf ns2:Wrote .
+
+ns2:D_Lol a ns1:NamedIndividual,
+        ns2:Doctor ;
+    ns2:Age 40 ;
+    ns2:District "Algiers"^^xsd:string ;
+    ns2:FirstName "Ahmed"^^xsd:string ;
+    ns2:Gender "male"^^xsd:string ;
+    ns2:LastName "Saif"^^xsd:string ;
+    ns2:Province "Algiers"^^xsd:string ;
+    ns2:Wrote ns2:consultation1,
+        ns2:consultation1 .
+
+ns2:Location a ns1:DatatypeProperty,
+        ns1:FunctionalProperty ;
+    rdfs:domain ns2:Person ;
+    rdfs:range xsd:string .
+
+ns2:P_youcef22madadi a ns1:NamedIndividual,
+        ns2:Patient ;
+    ns2:Affected ns2:consultation1,
+        ns2:consultation1 ;
+    ns2:Age 22 ;
+    ns2:District "Bir mou"^^xsd:string ;
+    ns2:FirstName "youcef"^^xsd:string ;
+    ns2:Gender "Male"^^xsd:string ;
+    ns2:Has ns2:symptom1,
+        ns2:symptom2,
+        ns2:symptom3 ;
+    ns2:LastName "madadi"^^xsd:string ;
+    ns2:Province "Algiers"^^xsd:string ;
+    ns2:Started "2020-07-08"^^xsd:date .
+
+ns2:disease1 a ns1:NamedIndividual,
+        ns2:Disease ;
+    ns2:Causes ns2:symptom1,
+        ns2:symptom2,
+        ns2:symptom3 ;
+    ns2:Disease_Code "COVID-19"^^xsd:string ;
+    ns2:Disease_Name "Coronavirus"^^xsd:string .
+
+ns2:symptom1 a ns1:NamedIndividual,
+        ns2:Symptom ;
+    ns2:CausedBy ns2:disease1 ;
+    ns2:Symptom_Name "A high temperature"^^xsd:string .
+
+ns2:symptom2 a ns1:NamedIndividual,
+        ns2:Symptom ;
+    ns2:CausedBy ns2:disease1 ;
+    ns2:Symptom_Name "A new continuous cough"^^xsd:string .
+
+ns2:symptom3 a ns1:NamedIndividual,
+        ns2:Symptom ;
+    ns2:CausedBy ns2:disease1 ;
+    ns2:Symptom_Name "A loss or change to your sense of smell or taste"^^xsd:string .
+
+ns2:Doctor a ns1:Class ;
+    rdfs:subClassOf ns2:Person .
+
+ns2:consultation1 a ns1:NamedIndividual,
+        ns2:Consultation ;
+    ns2:Affected_by ns2:P_youcef22madadi,
+        ns2:P_youcef22madadi ;
+    ns2:Note "We noticed that you may have Covid-19."^^xsd:string ;
+    ns2:Suggestions """*get lots of rest\r
+*drink plenty of fluids (water is best) to avoid dehydration – drink enough so your pee is light yellow and clear\r
+*take paracetamol or ibuprofen if you feel uncomfortable\r
+\r
+*avoid lying on your back – lie on your side or sit upright instead\r
+*try having a teaspoon of honey – but do not give honey to babies under 12 months\r
+\r
+*keep your room cool by turning the heating down or opening a window – do not use a fan as it may spread the virus\r
+*sit upright in a chair and relax your shoulders\r
+*try breathing slowly in through your nose and out through your mouth, with your lips together like you're gently blowing out a candle"""^^xsd:string ;
+    ns2:Wrote_by ns2:D_Lol,
+        ns2:D_Lol .
+
+ns2:Disease a ns1:Class ;
+    rdfs:subClassOf ns1:Thing .
+
+ns2:Consultation a ns1:Class ;
+    rdfs:subClassOf ns1:Thing .
+
+ns2:Patient a ns1:Class ;
+    rdfs:subClassOf ns2:Person ;
+    ns1:equivalentClass [ a ns1:Class ;
+            ns1:intersectionOf ( ns2:Person [ a ns1:Restriction ;
+                        ns1:onProperty ns2:Has ;
+                        ns1:someValuesFrom ns2:Symptom ] ) ] .
+
+ns2:Symptom a ns1:Class ;
+    rdfs:subClassOf ns1:Thing .
+
+ns2:Person a ns1:Class ;
+    rdfs:subClassOf ns1:Thing .
+

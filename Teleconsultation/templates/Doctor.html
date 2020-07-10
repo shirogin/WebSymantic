@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block Content %}
+<div  class="px-5 pt-5 col-5 InnerContent">
+    <h1 class="mt-5 pt-5">Hello Doctor</h1>
+    <p>We would like you to Enter your ID so we can direct you to our patients for consult please.</p>
+    <p class="text-danger">{{ Message }}</p>
+    <form action="/Doctor/" method="POST">{% csrf_token %}
+        <div class="form-group row w-100">
+            <label for="DoctorID" class="col-sm-4 col-form-label">Doctor ID:</label>
+            <div class="col-sm-8">
+                <input type="text" id ="DoctorID" name="DoctorID" class="form-control" required placeholder="D2016584">
+            </div>
+        </div>    
+        <button type="submit" class="btn btn-secondary px-4 mt-3">Consult</button>
+        <a class="btn btn-outline-dark px-4 mt-3" href="/Consultaion/">Go back to patient</a>
+    </form>
+</div>
+{% endblock Content %}
